@@ -1,0 +1,59 @@
+
+
+
+
+#define function updateHorseNumber(uint256) nonpayable returns()
+#define function readNumberOfHorses() view returns(uint256)
+
+#define constant NUMBER_OF_HORSES_SLOT = FREE_STORAGE_POINTER()
+
+// 60058060093d393df35f3560e01c => contract creation bytecode
+//  => runtime code
+// => metadata code like constructor
+#define macro MAIN()= takes(0) returns(0) {
+    //push0
+    0x00 calldataload 0xE0 shr //shift calldata to the right 0xE0 bits and calldata function selector remains in the stack 
+    
+    dup1 
+    __FUNC_SIG(updateHorseNumber) // this is the updateNumber function selector
+    eq //if both are equal push TRUE to the Stack
+    updateJump
+    jumpi //jump tothe updateJump if TRUE
+
+
+    __FUNC_SIG(readNumberOfHorses) //
+    eq 
+    readJump
+    jumpi 
+
+    0x00 0x00 revert // if non of jumps work it reverts and doesn't run jumps
+
+    updateJump: 
+        updateNumber()
+    readJump: 
+        readNumberOfHorses()
+
+}
+
+#define macro updateNumber() = takes(0) returns(0) {
+    0x04 //push 4 to the stack to be used as bytes offset
+    calldataload
+    [NUMBER_OF_HORSES_SLOT] //push the latest slot to the stack
+    sstore
+    stop // stop executing with sucessful return 
+}
+
+#define macro readNumberOfHorses() = takes(0) returns(0) {
+    [NUMBER_OF_HORSES_SLOT] // push key 
+
+    sload // pop key and push value
+    0x00 
+    mstore // push from stack to memory
+
+    0x20 // size
+    0x00 // offset in memory
+    return     
+
+
+
+}

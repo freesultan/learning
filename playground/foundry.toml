@@ -1,0 +1,27 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+ffi = true 
+evm_version='shanghai'
+optimizer=true
+optimizer_runs=1_000
+
+ 
+remappings = [
+    "foundry-huff/=lib/foundry-huff/src/",
+    "openzeppelin/=lib/openzeppelin-contracts/contracts/",
+    "@chimera/=lib/chimera/src/"
+]
+
+[fuzz]
+runs = 1000000
+max_test_rejects = 65536
+seed = '0x3e8'
+dictionary_weight = 40
+include_storage = true
+include_push_bytes = true
+
+
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
