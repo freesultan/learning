@@ -7,7 +7,7 @@ import { vm } from "@chimera/Hevm.sol";
 
 abstract contract Properties is Setup, Asserts {
 
-//Regular, black list
+//Regular, black box
     function property_receiver_can_take_flash_loan() public returns (bool result) {
         try this.attempt_flash_loan() {
             result = true;
@@ -20,7 +20,7 @@ abstract contract Properties is Setup, Asserts {
         vm.prank(owner);
         receiver.executeFlashLoan(10);
     }
-     //Regular, white list
+     //Regular, white box
     function property_pool_bal_equal_token_pool_bal() public view returns(bool result) {
         result = pool.poolBalance() == token.balanceOf(address(pool));
     }
