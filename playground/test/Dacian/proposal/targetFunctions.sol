@@ -16,6 +16,6 @@ abstract contract TargetFunctions is Properties, BaseTargetFunctions {
 
         vm.prank(voter);
 
-        proposal.vote();
+        proposal.vote(vote);
     }
 }

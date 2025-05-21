@@ -12,9 +12,7 @@ abstract contract Properties is Setup, Asserts {
     function property_proposal_finish_reward_distributed() public returns(bool result) {
         uint256 proposalBalance = address(proposal).balance;
 
-        result = (proposal.isActive() && proposalBalance > 0) 
-        ||
-         (!proposal.isActive()&& proposalBalance ==0));
+        result = (proposal.isActive() && proposalBalance > 0) || (!proposal.isActive() && proposalBalance ==0);
 
         return result;
     }
