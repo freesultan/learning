@@ -4,7 +4,7 @@ pragma solidity ^0.8.23;
  import {tokensaleSetUp} from "./setup.sol";
 import "forge-std/Test.sol";
 
-contract foundryTest is Test, tokensaleSetUp  {
+contract tokenSaleFoundryTest is Test, tokensaleSetUp  {
 
 
  
