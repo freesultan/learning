@@ -7,7 +7,7 @@ pragma solidity ^0.8.23;
 
 abstract contract Setup is BaseSetup {
     
-   function setUp() internal virtual override {
+   function setUp() internal {
 
         
    }

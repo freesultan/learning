@@ -1,26 +1,28 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.23;
 import {TestToken} from "./testToken.sol";
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
 import {TokenSale} from "../../../src/Dacian/tokenSale/tokenSale.sol";
 import "forge-std/Test.sol";
 
  contract tokensaleSetUp is Test {  
 
    
-    uint8 private constant SELL_DECIMALS = 18;
-    uint8 private constant BUY_DECIMALS  = 6;
+    uint8  constant SELL_DECIMALS = 18;
+    uint8  constant BUY_DECIMALS  = 6;
 
     // total tokens to sell
-    uint256 private constant SELL_TOKENS = 1000e18;
+    uint256  constant SELL_TOKENS = 1000e18;
 
     // buy tokens to give each buyer
-    uint256 private constant BUY_TOKENS  = 500e6;
+    uint256  constant BUY_TOKENS  = 500e6;
 
     // number of buyers allowed in the token sale
-    uint8 private constant NUM_BUYERS    = 5;
+    uint8  constant NUM_BUYERS    = 5;
 
     // max each buyer can buy
-    uint256 private constant MAX_TOKENS_PER_BUYER = 200e18;
+    uint256  constant MAX_TOKENS_PER_BUYER = 200e18;
 
     // allowed buyers
     address[] buyers;
@@ -30,7 +32,7 @@ import "forge-std/Test.sol";
     TokenSale tokenSale;
 
 
-    function setUp() internal virtual override {
+    function setUp() public  {
 
             sellToken = new TestToken(SELL_TOKENS, SELL_DECIMALS);
             buyToken  = new TestToken(BUY_TOKENS*NUM_BUYERS, BUY_DECIMALS);

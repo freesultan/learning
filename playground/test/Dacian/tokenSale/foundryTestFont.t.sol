@@ -28,4 +28,13 @@ contract foundryTest is Test, tokensaleSetUp  {
         assert(boughtBal == soldAmount);
     }
 
+    function invariant_buyer_bought_lt_max() public view {
+
+        for (uint256 i; i <buyers.length; ++i) {
+                address buyer = buyers[i];
+
+                assert(sellToken.balanceOf(buyer) <= MAX_TOKENS_PER_BUYER);
+        }
+    }
+
 }
